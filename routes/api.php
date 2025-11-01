@@ -30,3 +30,4 @@ Route::get('/profileUser',[ UserController::class,'getProfile']);
 });
 Route::post('products/{productsId}/categories',[ProductController::class, 'addCategoryToProduct']);
 Route::get('categories/{CategoryId}/products',[ProductController::class, 'getCategoryProducts']);
+Route::get('/health', fn() => ['status' => 'ok']);
