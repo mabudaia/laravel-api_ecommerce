@@ -4,7 +4,8 @@ FROM php:8.2-apache
 # تثبيت المتطلبات الأساسية للـ Laravel
 RUN apt-get update && apt-get install -y \
     git zip unzip libpng-dev libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev curl \
-    && docker-php-ext-install pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd
+    && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd
+
 
 # تثبيت Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -38,3 +39,5 @@ RUN php artisan key:generate || true
 
 # تنفيذ الأوامر النهائية عند تشغيل الحاوية
 CMD ["apache2-foreground"]
+# تشغيل المهاجرات تلقائيًا
+RUN php artisan migrate --force
