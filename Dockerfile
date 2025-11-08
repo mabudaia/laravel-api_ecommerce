@@ -40,4 +40,3 @@ RUN php artisan key:generate || true
 # تنفيذ الأوامر النهائية عند تشغيل الحاوية
 CMD ["apache2-foreground"]
 # تشغيل المهاجرات تلقائيًا
-RUN php artisan migrate --force
