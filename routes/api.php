@@ -11,6 +11,11 @@ use App\Http\Controllers\ProfileController;
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
 // })->middleware('auth:sanctum');
+// routes/web.php
+Route::get('/', function() {
+    return 'Laravel is working!';
+});
+
 Route::post('register',[UserController::class,'register']);
 Route::post('login',[UserController::class,'login']);
 Route::middleware('auth:sanctum')->group(function(){
