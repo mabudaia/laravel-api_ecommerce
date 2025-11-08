@@ -13,8 +13,11 @@ use App\Http\Controllers\ProfileController;
 // })->middleware('auth:sanctum');
 // routes/web.php
 Route::get('/', function() {
-    return 'Laravel is working!';
+    return response()->json([
+        'message' => 'Laravel API is working!'
+    ]);
 });
+
 
 Route::post('register',[UserController::class,'register']);
 Route::post('login',[UserController::class,'login']);
