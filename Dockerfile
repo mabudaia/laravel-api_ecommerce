@@ -17,11 +17,12 @@ COPY . .
 # تثبيت مكتبات Laravel
 RUN composer install --no-dev --optimize-autoloader
 
-# إنشاء قاعدة بيانات SQLite فارغة (تجريبية)
-RUN touch /tmp/database.sqlite
+# إنشاء ملف قاعدة بيانات SQLite في مجلد المشروع
+RUN mkdir -p database \
+    && touch database/database.sqlite \
+    && chown -R www-data:www-data database \
+    && chmod 664 database/database.sqlite
 
-# إعداد الأذونات الصحيحة للمجلدات
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # إعداد متغيرات البيئة الافتراضية
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
@@ -39,4 +40,3 @@ RUN php artisan key:generate || true
 
 # تنفيذ الأوامر النهائية عند تشغيل الحاوية
 CMD ["apache2-foreground"]
-# تشغيل المهاجرات تلقائيًا
